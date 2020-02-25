@@ -1,5 +1,5 @@
 {
-  "name": "koa-swagger-decorator",
+  "name": "@itamgames/koa-swagger-decorator",
   "version": "1.6.1",
   "description": "using decorator to automatically generate swagger doc for koa-router",
   "main": "dist/index.js",
@@ -85,7 +85,7 @@
     "koa",
     "koa-router"
   ],
-  "author": "cody",
+  "author": "itamgames",
   "license": "MIT",
-  "repository": "https://github.com/Cody2333/koa-swagger-decorator"
+  "repository": "https://github.com/itamgames/koa-swagger-decorator"
 }
