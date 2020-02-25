@@ -13,6 +13,13 @@ declare const Checker: {
         is: boolean;
         val: any;
     };
+    pattern: (input: any, expect?: Expect) => {
+        is: boolean;
+        val?: undefined;
+    } | {
+        is: boolean;
+        val: any;
+    };
     object: (input: any, expect?: Expect) => {
         is: boolean;
         val: any;
@@ -48,6 +55,6 @@ declare const Checker: {
         is: any;
         val: any[];
     };
-    check: (input: any, expect: Expect) => any;
+    checkType: (input: any, expect: Expect) => any;
 };
 export default Checker;

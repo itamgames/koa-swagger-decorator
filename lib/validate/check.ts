@@ -16,6 +16,13 @@ const cRequired = (input: any, expect: Expect = {}) => {
   return { is: true, val: input };
 };
 
+const cPattern = (input: any, expect: Expect = {}) => {
+  if (expect.pattern && typeof input === 'string' && !expect.pattern.test(input)) {
+    return { is: false };
+  }
+  return { is: true, val: input };
+};
+
 const cNullable = (input: any, expect: Expect = {}) => {
   if (expect.nullable && is.null(input)) {
     return { is: true, val: input};
@@ -88,7 +95,7 @@ const cObject = (input: any, expect: Expect = {}) => {
     if (!expect.properties[key].required && input[key] === undefined) {
       continue; // eslint-disable-line
     }
-    const { is, val } = check(input[key], expect.properties[key]);
+    const { is, val } = checkType(input[key], expect.properties[key]);
     if (!is) {
       console.log('error object properties:', key); // TODO need to update error debug info
       res.is = false;
@@ -117,7 +124,7 @@ const cArray = (input: any, expect: Expect) => {
   // items 字段为一个对象的情况, 验证该对象内的字段
   if (is.object(expect.items)) {
     for (const item of input) {
-      const { is } = check(item, expect.items);
+      const { is } = checkType(item, expect.items);
       if (!is) {
         res.is = false;
         return res;
@@ -145,7 +152,7 @@ const cArray = (input: any, expect: Expect) => {
   return res;
 };
 
-const check = (input: any, expect: Expect) => {
+const checkType = (input: any, expect: Expect) => {
   // 添加对body参数 nullable 情况的支持
   const r = cNullable(input, expect);
   if (r.is === true) return r;
@@ -162,12 +169,13 @@ const check = (input: any, expect: Expect) => {
 };
 const Checker = {
   required: cRequired,
+  pattern: cPattern,
   object: cObject,
   string: cString,
   num: cNum,
   bool: cBool,
   default: cDefault,
   array: cArray,
-  check
+  checkType
 };
 export default Checker;

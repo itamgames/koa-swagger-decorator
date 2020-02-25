@@ -1,15 +1,35 @@
 import _ from 'ramda';
 import Checker from './check';
 import { Expect } from './check';
+
 class InputError extends Error {
   field: string;
   status: number;
-  constructor(field: string) {
-    super(`incorrect field: '${field}', please check again!`);
+  constructor(field: string, message: string) {
+    super(message);
     this.field = field;
     this.status = 400;
   }
 }
+
+class RequiredError extends InputError {
+  constructor(field: string) {
+    super(field, `${field} is required`);
+  }
+}
+
+class TypeError extends InputError {
+  constructor(field: string) {
+    super(field, `type not matched: ${field}`);
+  }
+}
+
+class PatternError extends InputError {
+  constructor(field: string) {
+    super(field, `pattern not matched: ${field}`);
+  }
+}
+
 export interface ExpectObject {
   [key: string]: Expect;
 }
@@ -28,7 +48,7 @@ export default function (rawInput: Input, expect: ExpectObject) {
 
     // if this key is required but not in input.
     if (!Checker.required(input[key], expect[key]).is) {
-      throw new InputError(key);
+      throw new RequiredError(key);
     }
 
     // if this key has default value
@@ -42,9 +62,13 @@ export default function (rawInput: Input, expect: ExpectObject) {
 
     if (input[key] === undefined) return;
 
-    const { is, val } = Checker.check(input[key], expect[key]);
+    if (!Checker.pattern(input[key], expect[key]).is) {
+      throw new PatternError(key);
+    }
 
-    if (!is) throw new InputError(key);
+    const { is, val } = Checker.checkType(input[key], expect[key]);
+
+    if (!is) throw new TypeError(key);
 
     input[key] = val;
   });
