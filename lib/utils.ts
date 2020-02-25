@@ -32,8 +32,8 @@ enum allowedMethods {
 const getFilepaths = (dir: string, recursive: boolean = true, ignore: string[] = []) => {
   const ignoreDirs = ignore.map((path => `!${path}`));
   const paths = recursive
-    ? globby.sync(['**/*.js', '**/*.ts', ...ignoreDirs], { cwd: dir })
-    : globby.sync(['*.js', '*.ts', ...ignoreDirs], { cwd: dir });
+    ? globby.sync(['**/*.js', ...ignoreDirs], { cwd: dir })
+    : globby.sync(['*.js', ...ignoreDirs], { cwd: dir });
   return paths.map(path => _path.join(dir, path));
 };
 
