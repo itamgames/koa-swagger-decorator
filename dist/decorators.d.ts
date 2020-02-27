@@ -14,7 +14,7 @@ declare const tags: (t2: string | any[]) => (target: any, name: string, descript
 declare const params: _.CurriedFunction2<string, {
     [name: string]: any;
 }, (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor>;
-declare const headers: (t2: {
+declare const header: (t2: {
     [name: string]: any;
 }) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
 declare const query: (t2: {
@@ -46,7 +46,7 @@ declare const Doc: {
     }, (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor>;
     desc: _.CurriedFunction2<string, string | any[], (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor>;
     description: (t2: string | any[]) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
-    headers: (t2: {
+    header: (t2: {
         [name: string]: any;
     }) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
     query: (t2: {
@@ -77,4 +77,4 @@ declare const Doc: {
     prefix: (prefix: string) => (target: any) => void;
 };
 export default Doc;
-export { request, summary, params, desc, description, headers, query, path, body, tags, middlewares, security, formData, responses, deprecated, tagsAll, responsesAll, middlewaresAll, securityAll, deprecatedAll, queryAll, prefix };
+export { request, summary, params, desc, description, header, query, path, body, tags, middlewares, security, formData, responses, deprecated, tagsAll, responsesAll, middlewaresAll, securityAll, deprecatedAll, queryAll, prefix };
