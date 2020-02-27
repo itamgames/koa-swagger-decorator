@@ -118,6 +118,9 @@ const params = _.curry(_params);
 
 // below are [parameters]
 
+// header params
+const headers = params("header");
+
 // query params
 const query = params("query");
 
@@ -181,6 +184,7 @@ const Doc = {
   params,
   desc,
   description,
+  headers,
   query,
   path,
   body,
@@ -207,6 +211,7 @@ export {
   params,
   desc,
   description,
+  headers,
   query,
   path,
   body,

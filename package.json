@@ -1,6 +1,6 @@
 {
   "name": "@itamgames/koa-swagger-decorator",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "using decorator to automatically generate swagger doc for koa-router",
   "main": "dist/index.js",
   "dependencies": {
