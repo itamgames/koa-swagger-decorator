@@ -9,7 +9,7 @@ class InputError extends Error {
     constructor(field, message) {
         super(message);
         this.field = field;
-        this.status = 400;
+        this.status = 422;
     }
 }
 class RequiredError extends InputError {

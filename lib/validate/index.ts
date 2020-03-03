@@ -8,7 +8,7 @@ class InputError extends Error {
   constructor(field: string, message: string) {
     super(message);
     this.field = field;
-    this.status = 400;
+    this.status = 422;
   }
 }
 
