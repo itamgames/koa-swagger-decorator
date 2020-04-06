@@ -3,10 +3,13 @@ import Checker from './check';
 import { Expect } from './check';
 
 class InputError extends Error {
+  error: string;
   field: string;
   status: number;
-  constructor(field: string, message: string) {
+
+  constructor(field: string, type: string, message: string) {
     super(message);
+    this.error = type;
     this.field = field;
     this.status = 422;
   }
@@ -14,19 +17,19 @@ class InputError extends Error {
 
 class RequiredError extends InputError {
   constructor(field: string) {
-    super(field, `${field} is required`);
+    super(field, 'RequiredError', `${field} is required`);
   }
 }
 
 class TypeError extends InputError {
   constructor(field: string) {
-    super(field, `type not matched: ${field}`);
+    super(field, 'TypeError', `type not matched: ${field}`);
   }
 }
 
 class PatternError extends InputError {
   constructor(field: string) {
-    super(field, `pattern not matched: ${field}`);
+    super(field, 'PatternError', `pattern not matched: ${field}`);
   }
 }
 
