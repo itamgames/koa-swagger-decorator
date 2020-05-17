@@ -19,6 +19,7 @@ export interface Context extends IRouter.IRouterContext {
   validatedQuery: any;
   validatedBody: any;
   validatedParams: any;
+  authenticated?: any;
 }
 
 const validator = (parameters: any) => async (ctx: Context, next: () => Promise<any>) => {
