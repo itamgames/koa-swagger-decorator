@@ -383,7 +383,10 @@ describe('Validate:', () => {
         nnn: { type: 'number' }
       }
     };
-    input.arr = [{ url: 'a', other: 'b', num: '33' }, { url: 'a', name: 'b' }];
+    input.arr = [
+      { url: 'a', other: 'b', num: '33' },
+      { url: 'a', name: 'b' }
+    ];
     validate(input, expect);
   });
   it('should not set undefined default value on the top layer', () => {
