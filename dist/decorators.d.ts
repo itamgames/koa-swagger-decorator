@@ -29,10 +29,10 @@ declare const body: (t2: {
 declare const formData: (t2: {
     [name: string]: any;
 }) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
-declare const tagsAll: (items: string | string[]) => (target: any) => void;
+declare const tagsAll: (items: string[] | string) => (target: any) => void;
 declare const responsesAll: (responses?: IResponses) => (target: any) => void;
-declare const middlewaresAll: (items: Function | Function[]) => (target: any) => void;
-declare const securityAll: (security: any) => (target: any) => void;
+declare const middlewaresAll: (items: Function[] | Function) => (target: any) => void;
+declare const securityAll: (security: any[] | any) => (target: any) => void;
 declare const deprecatedAll: (target: any) => void;
 declare const prefix: (prefix: string) => (target: any) => void;
 declare const queryAll: (parameters: {
@@ -66,11 +66,11 @@ declare const Doc: {
     }) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
     responses: (responses?: IResponses) => (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
     deprecated: (target: any, name: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
-    tagsAll: (items: string | string[]) => (target: any) => void;
+    tagsAll: (items: string[] | string) => (target: any) => void;
     responsesAll: (responses?: IResponses) => (target: any) => void;
-    middlewaresAll: (items: Function | Function[]) => (target: any) => void;
+    middlewaresAll: (items: Function[] | Function) => (target: any) => void;
     deprecatedAll: (target: any) => void;
-    securityAll: (security: any) => (target: any) => void;
+    securityAll: (security: any[] | any) => (target: any) => void;
     queryAll: (parameters: {
         [name: string]: any;
     }, filters?: string[]) => (target: any) => void;
